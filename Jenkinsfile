@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo "Checking required files..."
                 sh '''
-                    test -f index.html || (echo "Missing index.html" && exit 1)
+                    test -f public/index.html || (echo "Missing public/index.html" && exit 1)
                     test -f netlify/functions/quote.js || (echo "Missing quote function" && exit 1)
                     echo "Build check passed."
                 '''
@@ -53,7 +53,7 @@ pipeline {
                     node_modules/.bin/netlify deploy \
                       --auth=$NETLIFY_AUTH_TOKEN \
                       --site=$NETLIFY_SITE_ID \
-                      --dir=. \
+                      --dir=public \
                       --prod
                 '''
             }
